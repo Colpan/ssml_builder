@@ -5,7 +5,7 @@ require 'ssml_builder/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "ssml_builder"
-  spec.version       = SSMLBuilder::VERSION
+  spec.version       = SsmlBuilder::VERSION
   spec.authors       = ["Paul McMahon"]
   spec.email         = ["colpan@sircolpaniusjackson.com"]
   spec.summary       = %q{Gem for building SSML messages for Amazon Alexa}
