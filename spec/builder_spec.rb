@@ -54,7 +54,7 @@ describe SsmlBuilder::Builder do
     end
 
     context "on sentence" do
-      it "should appropriate sentence tags in ssml response" do
+      it "should apply appropriate sentence tags in ssml response" do
         speech = SsmlBuilder::Builder.new
         speech.sentence("Hello how are you doing this fine day?")
         expect(speech.ssml.is_a?(String)).to eq(true)
@@ -77,35 +77,35 @@ describe SsmlBuilder::Builder do
         speech = SsmlBuilder::Builder.new
         speech.rate("Text",90)
         expect(speech.ssml.is_a?(String)).to eq(true)
-        expect(speech.ssml).to eq("<speak><prosody rate=\"90%\"/>Text</speak>")
+        expect(speech.ssml).to eq("<speak><prosody rate=\"90%\">Text</prosody></speak>")
       end
 
       it "should set the rate of speech with number string without %" do
         speech = SsmlBuilder::Builder.new
         speech.rate("Text","90")
         expect(speech.ssml.is_a?(String)).to eq(true)
-        expect(speech.ssml).to eq("<speak><prosody rate=\"90%\"/>Text</speak>")
+        expect(speech.ssml).to eq("<speak><prosody rate=\"90%\">Text</prosody></speak>")
       end
 
       it "should set the rate of speech with number string with %" do
         speech = SsmlBuilder::Builder.new
         speech.rate("Text","90%")
         expect(speech.ssml.is_a?(String)).to eq(true)
-        expect(speech.ssml).to eq("<speak><prosody rate=\"90%\"/>Text</speak>")
+        expect(speech.ssml).to eq("<speak><prosody rate=\"90%\">Text</prosody></speak>")
       end
 
       it "should have a minimum of 20%" do
         speech = SsmlBuilder::Builder.new
         speech.rate("Text","10%")
         expect(speech.ssml.is_a?(String)).to eq(true)
-        expect(speech.ssml).to eq("<speak><prosody rate=\"20%\"/>Text</speak>")
+        expect(speech.ssml).to eq("<speak><prosody rate=\"20%\">Text</prosody></speak>")
       end
 
       it "should also accept text based rates" do
         speech = SsmlBuilder::Builder.new
         speech.rate("Text","medium")
         expect(speech.ssml.is_a?(String)).to eq(true)
-        expect(speech.ssml).to eq("<speak><prosody rate=\"medium\"/>Text</speak>")
+        expect(speech.ssml).to eq("<speak><prosody rate=\"medium\">Text</prosody></speak>")
       end
     end
 
@@ -114,42 +114,42 @@ describe SsmlBuilder::Builder do
         speech = SsmlBuilder::Builder.new
         speech.pitch("Text",30)
         expect(speech.ssml.is_a?(String)).to eq(true)
-        expect(speech.ssml).to eq("<speak><prosody pitch=\"+30%\"/>Text</speak>")
+        expect(speech.ssml).to eq("<speak><prosody pitch=\"+30%\">Text</prosody></speak>")
       end
 
       it "should set the pitch of speech with number string without %" do
         speech = SsmlBuilder::Builder.new
         speech.pitch("Text","-30")
         expect(speech.ssml.is_a?(String)).to eq(true)
-        expect(speech.ssml).to eq("<speak><prosody pitch=\"-30%\"/>Text</speak>")
+        expect(speech.ssml).to eq("<speak><prosody pitch=\"-30%\">Text</prosody></speak>")
       end
 
       it "should set the pitch of speech with number string with %" do
         speech = SsmlBuilder::Builder.new
         speech.pitch("Text","30%")
         expect(speech.ssml.is_a?(String)).to eq(true)
-        expect(speech.ssml).to eq("<speak><prosody pitch=\"+30%\"/>Text</speak>")
+        expect(speech.ssml).to eq("<speak><prosody pitch=\"+30%\">Text</prosody></speak>")
       end
 
       it "should have a minimum of -33.3%" do
         speech = SsmlBuilder::Builder.new
         speech.pitch("Text","-50%")
         expect(speech.ssml.is_a?(String)).to eq(true)
-        expect(speech.ssml).to eq("<speak><prosody pitch=\"-33.3%\"/>Text</speak>")
+        expect(speech.ssml).to eq("<speak><prosody pitch=\"-33.3%\">Text</prosody></speak>")
       end
 
       it "should have a maximum of 50%" do
         speech = SsmlBuilder::Builder.new
-        speech.pitch("Text","-50%")
+        speech.pitch("Text","55%")
         expect(speech.ssml.is_a?(String)).to eq(true)
-        expect(speech.ssml).to eq("<speak><prosody pitch=\"+50%\"/>Text</speak>")
+        expect(speech.ssml).to eq("<speak><prosody pitch=\"+50%\">Text</prosody></speak>")
       end
 
       it "should also accept text based rates" do
         speech = SsmlBuilder::Builder.new
         speech.pitch("Text","medium")
         expect(speech.ssml.is_a?(String)).to eq(true)
-        expect(speech.ssml).to eq("<speak><prosody pitch=\"medium\"/>Text</speak>")
+        expect(speech.ssml).to eq("<speak><prosody pitch=\"medium\">Text</prosody></speak>")
       end
     end
 
@@ -158,35 +158,35 @@ describe SsmlBuilder::Builder do
         speech = SsmlBuilder::Builder.new
         speech.volume("Text",2.3)
         expect(speech.ssml.is_a?(String)).to eq(true)
-        expect(speech.ssml).to eq("<speak><prosody volume=\"+2.3dB\"/>Text</speak>")
+        expect(speech.ssml).to eq("<speak><prosody volume=\"+2.3dB\">Text</prosody></speak>")
       end
 
       it "should set the volume of speech with number string without %" do
         speech = SsmlBuilder::Builder.new
         speech.volume("Text","-2.3")
         expect(speech.ssml.is_a?(String)).to eq(true)
-        expect(speech.ssml).to eq("<speak><prosody volume=\"-2.3dB\"/>Text</speak>")
+        expect(speech.ssml).to eq("<speak><prosody volume=\"-2.3dB\">Text</prosody></speak>")
       end
 
       it "should set the pitch of speech with number string with %" do
         speech = SsmlBuilder::Builder.new
         speech.volume("Text","2.3dB")
         expect(speech.ssml.is_a?(String)).to eq(true)
-        expect(speech.ssml).to eq("<speak><prosody volume=\"+2.3dB\"/>Text</speak>")
+        expect(speech.ssml).to eq("<speak><prosody volume=\"+2.3dB\">Text</prosody></speak>")
       end
 
       it "should have a maximum of 4.08dB" do
         speech = SsmlBuilder::Builder.new
         speech.volume("Text","5dB")
         expect(speech.ssml.is_a?(String)).to eq(true)
-        expect(speech.ssml).to eq("<speak><prosody volume=\"+4.08dB\"/>Text</speak>")
+        expect(speech.ssml).to eq("<speak><prosody volume=\"+4.08dB\">Text</prosody></speak>")
       end
 
       it "should also accept text based rates" do
         speech = SsmlBuilder::Builder.new
         speech.volume("Text","medium")
         expect(speech.ssml.is_a?(String)).to eq(true)
-        expect(speech.ssml).to eq("<speak><prosody volume=\"medium\"/>Text</speak>")
+        expect(speech.ssml).to eq("<speak><prosody volume=\"medium\">Text</prosody></speak>")
       end
     end
 
@@ -414,7 +414,7 @@ describe SsmlBuilder::Builder do
       end
 
       it "properly ignores empty inputs" do
-        speech = SsmlBuilder.Builder.new
+        speech = SsmlBuilder::Builder.new
         speech.say("Hi there!")
         speech.whisper(nil)
         expect(speech.ssml.is_a?(String)).to eq(true)
@@ -424,7 +424,7 @@ describe SsmlBuilder::Builder do
 
     context "on amazon_verb" do
       it "properly formats w tag with amazon verb" do
-        speech = SsmlBuilder.Builder.new
+        speech = SsmlBuilder::Builder.new
         speech.amazon_verb("read")
         expect(speech.ssml.is_a?(String)).to eq(true)
         expect(speech.ssml).to eq("<speak><w role=\"amazon:VB\">read</w></speak>")
@@ -433,7 +433,7 @@ describe SsmlBuilder::Builder do
 
     context "on amazon_participle" do
       it "properly formats w tag with amazon past participle" do
-        speech = SsmlBuilder.Builder.new
+        speech = SsmlBuilder::Builder.new
         speech.amazon_participle("read")
         expect(speech.ssml.is_a?(String)).to eq(true)
         expect(speech.ssml).to eq("<speak><w role=\"amazon:VBD\">read</w></speak>")
@@ -442,7 +442,7 @@ describe SsmlBuilder::Builder do
 
     context "on amazon_noun" do
       it "properly formats w tag with amazon noun" do
-        speech = SsmlBuilder.Builder.new
+        speech = SsmlBuilder::Builder.new
         speech.amazon_noun("bath")
         expect(speech.ssml.is_a?(String)).to eq(true)
         expect(speech.ssml).to eq("<speak><w role=\"amazon:NN\">bath</w></speak>")
@@ -451,7 +451,7 @@ describe SsmlBuilder::Builder do
 
     context "on amazon_sense" do
       it "properly formats w tag with amazon sense 1" do
-        speech = SsmlBuilder.Builder.new
+        speech = SsmlBuilder::Builder.new
         speech.amazon_sense("bass",1)
         expect(speech.ssml.is_a?(String)).to eq(true)
         expect(speech.ssml).to eq("<speak><w role=\"SENSE_1\">bass</w></speak>")
@@ -460,7 +460,7 @@ describe SsmlBuilder::Builder do
 
     context "on phoneme" do
       it "properly formats w tag with amazon sense 1" do
-        speech = SsmlBuilder.Builder.new
+        speech = SsmlBuilder::Builder.new
         speech.phoneme("pecan","ipa","pɪˈkɑːn")
         expect(speech.ssml.is_a?(String)).to eq(true)
         expect(speech.ssml).to eq("<speak><phoneme alphabet=\"ipa\" ph=\"pɪˈkɑːn\">pecan</phoneme></speak>")
