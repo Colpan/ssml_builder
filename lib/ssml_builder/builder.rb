@@ -65,6 +65,11 @@ module SsmlBuilder
       end
     end
 
+    def break(length = "medium")
+      # ALIAS for pause
+      pause(length)
+    end
+
     def emphasis(string,level = "moderate")
       space_precheck
       @ssml_content += "<emphasis level=\"" + level + "\">" + string + "</emphasis>"

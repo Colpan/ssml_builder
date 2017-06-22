@@ -58,7 +58,7 @@ describe 'Using the string based ssml builder' do
         expect(speech.to_ssml).to eq("<speak><s>Hows it going?</s></speak>")
         speech = 'How"s it going?'.ssml_sentence
         expect(speech.is_a?(String)).to eq(true)
-        expect(speech.ssml).to eq("<speak><s>Hows it going?</s></speak>")
+        expect(speech.to_ssml).to eq("<speak><s>Hows it going?</s></speak>")
       end
     end
 
@@ -66,32 +66,32 @@ describe 'Using the string based ssml builder' do
       it "should set the rate of speech with integer" do
         speech = "Text".ssml_rate(90)
         expect(speech.is_a?(String)).to eq(true)
-        expect(speech.to_ssml).to eq("<speak><prosody rate=\"90%\"/>Text</speak>")
+        expect(speech.to_ssml).to eq("<speak><prosody rate=\"90%\">Text</prosody></speak>")
       end
 
       it "should set the rate of speech with number string without %" do
         speech = SsmlBuilder::Builder.new
         speech = "Text".ssml_rate("90")
         expect(speech.is_a?(String)).to eq(true)
-        expect(speech.to_ssml).to eq("<speak><prosody rate=\"90%\"/>Text</speak>")
+        expect(speech.to_ssml).to eq("<speak><prosody rate=\"90%\">Text</prosody></speak>")
       end
 
       it "should set the rate of speech with number string with %" do
         speech = "Text".ssml_rate("90%")
         expect(speech.is_a?(String)).to eq(true)
-        expect(speech.to_ssml).to eq("<speak><prosody rate=\"90%\"/>Text</speak>")
+        expect(speech.to_ssml).to eq("<speak><prosody rate=\"90%\">Text</prosody></speak>")
       end
 
       it "should have a minimum of 20%" do
         speech = "Text".ssml_rate("10%")
         expect(speech.is_a?(String)).to eq(true)
-        expect(speech.to_ssml).to eq("<speak><prosody rate=\"20%\"/>Text</speak>")
+        expect(speech.to_ssml).to eq("<speak><prosody rate=\"20%\">Text</prosody></speak>")
       end
 
       it "should also accept text based rates" do
         speech = "Text".ssml_rate("medium")
         expect(speech.is_a?(String)).to eq(true)
-        expect(speech.to_ssml).to eq("<speak><prosody rate=\"medium\"/>Text</speak>")
+        expect(speech.to_ssml).to eq("<speak><prosody rate=\"medium\">Text</prosody></speak>")
       end
     end
 
@@ -99,37 +99,37 @@ describe 'Using the string based ssml builder' do
       it "should set the pitch of speech with integer" do
         speech = "Text".ssml_pitch(30)
         expect(speech.is_a?(String)).to eq(true)
-        expect(speech.to_ssml).to eq("<speak><prosody pitch=\"+30%\"/>Text</speak>")
+        expect(speech.to_ssml).to eq("<speak><prosody pitch=\"+30%\">Text</prosody></speak>")
       end
 
       it "should set the pitch of speech with number string without %" do
         speech = "Text".ssml_pitch("-30")
         expect(speech.is_a?(String)).to eq(true)
-        expect(speech.to_ssml).to eq("<speak><prosody pitch=\"-30%\"/>Text</speak>")
+        expect(speech.to_ssml).to eq("<speak><prosody pitch=\"-30%\">Text</prosody></speak>")
       end
 
       it "should set the pitch of speech with number string with %" do
         speech = "Text".ssml_pitch("30%")
         expect(speech.is_a?(String)).to eq(true)
-        expect(speech.to_ssml).to eq("<speak><prosody pitch=\"+30%\"/>Text</speak>")
+        expect(speech.to_ssml).to eq("<speak><prosody pitch=\"+30%\">Text</prosody></speak>")
       end
 
       it "should have a minimum of -33.3%" do
         speech = "Text".ssml_pitch("-50%")
         expect(speech.is_a?(String)).to eq(true)
-        expect(speech.to_ssml).to eq("<speak><prosody pitch=\"-33.3%\"/>Text</speak>")
+        expect(speech.to_ssml).to eq("<speak><prosody pitch=\"-33.3%\">Text</prosody></speak>")
       end
 
       it "should have a maximum of 50%" do
-        speech = "Text".ssml_pitch("-50%")
+        speech = "Text".ssml_pitch("55%")
         expect(speech.is_a?(String)).to eq(true)
-        expect(speech.to_ssml).to eq("<speak><prosody pitch=\"+50%\"/>Text</speak>")
+        expect(speech.to_ssml).to eq("<speak><prosody pitch=\"+50%\">Text</prosody></speak>")
       end
 
       it "should also accept text based rates" do
         speech = "Text".ssml_pitch("medium")
         expect(speech.is_a?(String)).to eq(true)
-        expect(speech.to_ssml).to eq("<speak><prosody pitch=\"medium\"/>Text</speak>")
+        expect(speech.to_ssml).to eq("<speak><prosody pitch=\"medium\">Text</prosody></speak>")
       end
     end
 
@@ -137,31 +137,31 @@ describe 'Using the string based ssml builder' do
       it "should set the volume of speech with integer" do
         speech = "Text".ssml_volume(2.3)
         expect(speech.is_a?(String)).to eq(true)
-        expect(speech.to_ssml).to eq("<speak><prosody volume=\"+2.3dB\"/>Text</speak>")
+        expect(speech.to_ssml).to eq("<speak><prosody volume=\"+2.3dB\">Text</prosody></speak>")
       end
 
       it "should set the volume of speech with number string without %" do
         speech = "Text".ssml_volume("-2.3")
         expect(speech.is_a?(String)).to eq(true)
-        expect(speech.to_ssml).to eq("<speak><prosody volume=\"-2.3dB\"/>Text</speak>")
+        expect(speech.to_ssml).to eq("<speak><prosody volume=\"-2.3dB\">Text</prosody></speak>")
       end
 
       it "should set the pitch of speech with number string with %" do
         speech = "Text".ssml_volume("2.3dB")
         expect(speech.is_a?(String)).to eq(true)
-        expect(speech.to_ssml).to eq("<speak><prosody volume=\"+2.3dB\"/>Text</speak>")
+        expect(speech.to_ssml).to eq("<speak><prosody volume=\"+2.3dB\">Text</prosody></speak>")
       end
 
       it "should have a maximum of 4.08dB" do
         speech = "Text".ssml_volume("5dB")
         expect(speech.is_a?(String)).to eq(true)
-        expect(speech.to_ssml).to eq("<speak><prosody volume=\"+4.08dB\"/>Text</speak>")
+        expect(speech.to_ssml).to eq("<speak><prosody volume=\"+4.08dB\">Text</prosody></speak>")
       end
 
       it "should also accept text based rates" do
         speech = "Text".ssml_volume("medium")
         expect(speech.is_a?(String)).to eq(true)
-        expect(speech.to_ssml).to eq("<speak><prosody volume=\"medium\"/>Text</speak>")
+        expect(speech.to_ssml).to eq("<speak><prosody volume=\"medium\">Text</prosody></speak>")
       end
     end
 
@@ -195,6 +195,14 @@ describe 'Using the string based ssml builder' do
         speech = "".ssml_pause
         expect(speech.is_a?(String)).to eq(true)
         expect(speech.to_ssml).to eq("<speak><break strength=\"medium\"/></speak>")
+      end
+    end
+
+    context "on break" do
+      it "should build a pause tag for 1 second" do
+        speech = "".ssml_break("1s")
+        expect(speech.is_a?(String)).to eq(true)
+        expect(speech.to_ssml).to eq("<speak><break time=\"1s\"/></speak>")
       end
     end
 
@@ -237,8 +245,8 @@ describe 'Using the string based ssml builder' do
     context "on cardinal or number" do
       it "uses the proper cardinal ssml tag" do
         speech = "10".ssml_cardinal
-        expect(speech.ssml.is_a?(String)).to eq(true)
-        expect(speech.ssml).to eq("<speak><say-as interpret-as=\"cardinal\">10</say-as></speak>")
+        expect(speech.to_ssml.is_a?(String)).to eq(true)
+        expect(speech.to_ssml).to eq("<speak><say-as interpret-as=\"cardinal\">10</say-as></speak>")
       end
 
       it "uses the proper number ssml tag" do

@@ -228,6 +228,15 @@ describe SsmlBuilder::Builder do
       end
     end
 
+    context "on break" do
+      it "should build a pause tag for 1 second" do
+        speech = SsmlBuilder::Builder.new
+        speech.break("1s")
+        expect(speech.ssml.is_a?(String)).to eq(true)
+        expect(speech.ssml).to eq("<speak><break time=\"1s\"/></speak>")
+      end
+    end
+
     context "on emphasis" do
       it "properly formats emphasis ssml string" do
         speech = SsmlBuilder::Builder.new
