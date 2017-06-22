@@ -565,4 +565,5 @@ ssml_buider.ssml
 Please make sure to write specs for any new features!
 
 # Team Members
-* "Paul McMahon" <colpan@sircolpaniusjackson.com>
+* "Paul McMahon" <colpan@sircolpaniusjackson.com> 
+Twitter: [@colpanius](https://twitter.com/colpanius)
