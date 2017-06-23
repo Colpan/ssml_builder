@@ -3,6 +3,12 @@
 This gem implements a full suite of tools for working with SSML particularly with Amazon's Alexa. For full SSML documentation, please see:
 [Amazon SSML Reference](https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/speech-synthesis-markup-language-ssml-reference)
 
+While this gem will work as a stand-alone gem and is functional with all Alexa developer kits, I also maintain another gem for creating your own custom skill.
+
+Please check out my other gem:
+[Alexa Toolbox](https://github.com/Colpan/alexa-toolbox)
+This gem is still heavily a work in progress.
+
 ## Installation
 
 ### For Ruby Projects:
